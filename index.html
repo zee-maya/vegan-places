@@ -251,7 +251,7 @@ select{appearance:none;border:1px solid var(--line);background:var(--surface);co
 
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
   background:var(--ink);color:var(--bg);font-family:var(--ui);font-weight:600;font-size:14px;
-  padding:11px 18px;border-radius:999px;z-index:90;opacity:0;transition:.25s;pointer-events:none}
+  padding:12px 18px;border-radius:14px;z-index:3500;max-width:88vw;white-space:normal;text-align:center;line-height:1.35;opacity:0;transition:.25s;pointer-events:none}
 .toast.on{opacity:1;transform:translateX(-50%)}
 .muted{color:var(--muted)}
 .signin-note{font-family:var(--ui);font-size:13px;color:var(--muted);background:var(--surface2);
@@ -1910,7 +1910,7 @@ function openVisitModal(rest){
         verdetto:state.verdetto,ordinato:fOrd.value.trim(),danonperdere:fDnp.value.trim(),
         conchi:fChi.value.trim(),text:txt.value.trim(),photos:ids,by:ME.id,at:Date.now()});
     }).then(function(){closeModal();toast("Visita pubblicata");goView("diario");})
-      .catch(function(){saveBtn.disabled=false;saveBtn.textContent="Pubblica visita";toast("Errore nel salvataggio");});
+      .catch(function(e){saveBtn.disabled=false;saveBtn.textContent="Pubblica visita";toast("Errore: "+((e&&e.message)||"salvataggio"));});
   };
   openModalNode(h("div",{},[
     h("div",{class:"mhead"},[h("h3",{text:"Registra una visita"}),
@@ -1957,7 +1957,7 @@ function openDishModal(dish){
         ingredients:ingr.value.split(",").map(function(s){return s.trim();}).filter(Boolean),
         text:txt.value.trim(),photos:ids,rid:rid,rname:rname,by:ME.id,at:Date.now()});
     }).then(function(){closeModal();toast("Piatto pubblicato");goView("cucina");})
-      .catch(function(){saveBtn.disabled=false;saveBtn.textContent="Pubblica piatto";toast("Errore nel salvataggio");});
+      .catch(function(e){saveBtn.disabled=false;saveBtn.textContent="Pubblica piatto";toast("Errore: "+((e&&e.message)||"salvataggio"));});
   };
   openModalNode(h("div",{},[
     h("div",{class:"mhead"},[h("h3",{text:"Nuovo piatto"}),
